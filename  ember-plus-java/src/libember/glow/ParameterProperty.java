@@ -7,10 +7,96 @@ import java.util.NoSuchElementException;
  * properties.
  */
 public enum ParameterProperty {
-	IDENTIFIER(0), DESCRIPTION(1), VALUE(2), MINIMUM(3), MAXIMUM(4), ACCESS(5), FORMAT(
-			6), ENUMERATION(7), FACTOR(8), ISONLINE(9), FORMULA(10), STEP(11), DEFAULT(
-			12), TYPE(13), STREAMIDENTIFIER(14), ENUMMAP(15), STREAMDESCRIPTOR(
-			16);
+	/**
+	 * Identifies the parameter identifier.
+	 */
+	IDENTIFIER(0), 
+	
+	/**
+	 * Identifies the parameter description string, which is a display string.
+	 */
+	DESCRIPTION(1), 
+	
+	/**
+	 * Identifies the parameter value.
+	 */
+	VALUE(2), 
+	
+	/**
+	 * Identifies the minimum of a parameter value. 
+	 */
+	MINIMUM(3), 
+	
+	/**
+	 * Identifies the maximum of a parameter value.
+	 */
+	MAXIMUM(4), 
+	
+	/**
+	 * Identifies the access modifier of a parameter.
+	 */
+	ACCESS(5), 
+	
+	/**
+	 * Identifies the format string.
+	 */
+	FORMAT(6), 
+	
+	/**
+	 * Identifies the enumeration entries.
+	 */
+	ENUMERATION(7), 
+	
+	/**
+	 * Identifies the factor.
+	 */
+	FACTOR(8), 
+	
+	/**
+	 * Identifies the online flag.
+	 */
+	ISONLINE(9), 
+	
+	/**
+	 * Identifies the formula.
+	 */
+	FORMULA(10), 
+	
+	/**
+	 * Identifies the step of a parameter value.
+	 */
+	@Deprecated
+	STEP(11), 
+	
+	/**
+	 * Identifies the default value property.
+	 */
+	DEFAULT(12), 
+	
+	/**
+	 * Identifies the parameter type hint.
+	 */
+	TYPE(13), 
+	
+	/**
+	 * Identifies the stream identifier.
+	 */
+	STREAMIDENTIFIER(14), 
+	
+	/**
+	 * Identifies the enumeration map.
+	 */
+	ENUMMAP(15), 
+	
+	/**
+	 * Identifies the stream descriptor.
+	 */
+	STREAMDESCRIPTOR(16),
+	
+	/**
+	 * Identifies the schema identifier.
+	 */
+	SCHEMAIDENTIFIER(17);
 
 	/**
 	 * Gets the {@link ParameterProperty} represented by the passed numeric
@@ -60,6 +146,8 @@ public enum ParameterProperty {
 			return ENUMMAP;
 		case 16:
 			return STREAMDESCRIPTOR;
+		case 17:
+			return SCHEMAIDENTIFIER;
 		default:
 			throw new NoSuchElementException("The value is invalid.");
 		}

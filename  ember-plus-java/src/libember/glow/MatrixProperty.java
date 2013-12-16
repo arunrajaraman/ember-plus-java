@@ -64,7 +64,12 @@ public enum MatrixProperty {
 	/**
 	 * Identifies a property that contains a collection of label descriptions.
 	 */
-	LABELS(10);
+	LABELS(10),
+	
+	/**
+	 * Identifies the schema identifier string of a matrix.
+	 */
+	SCHEMAIDENTIFIER(11);
 
 	/**
 	 * Gets the {@link MatrixProperty} representation of the specified numeric
@@ -102,6 +107,8 @@ public enum MatrixProperty {
 			return GAINPARAMETERNUMBER;
 		case 10:
 			return LABELS;
+		case 11:
+			return SCHEMAIDENTIFIER;
 		default:
 			throw new NoSuchElementException("The value is invalid.");
 		}

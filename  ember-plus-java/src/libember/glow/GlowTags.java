@@ -59,17 +59,30 @@ final class GlowTags {
 	}
 
 	static class MatrixContents {
-		final static Tag IDENTIFIER = new Tag(Class.CONTEXT, 0);
-		final static Tag DESCRIPTION = new Tag(Class.CONTEXT, 1);
-		final static Tag TYPE = new Tag(Class.CONTEXT, 2);
-		final static Tag ADDRESSINGMODE = new Tag(Class.CONTEXT, 3);
-		final static Tag TARGETCOUNT = new Tag(Class.CONTEXT, 4);
-		final static Tag SOURCECOUNT = new Tag(Class.CONTEXT, 5);
-		final static Tag MAXIMUMTOTALCONNECTS = new Tag(Class.CONTEXT, 6);
-		final static Tag MAXIMUMCONNECTSPERTARGET = new Tag(Class.CONTEXT, 7);
-		final static Tag PARAMETERSLOCATION = new Tag(Class.CONTEXT, 8);
-		final static Tag GAINPARAMETERNUMBER = new Tag(Class.CONTEXT, 9);
-		final static Tag LABELS = new Tag(Class.CONTEXT, 10);
+		final static Tag IDENTIFIER = new Tag(Class.CONTEXT, 
+				MatrixProperty.IDENTIFIER.value());
+		final static Tag DESCRIPTION = new Tag(Class.CONTEXT, 
+				MatrixProperty.DESCRIPTION.value());
+		final static Tag TYPE = new Tag(Class.CONTEXT,
+				MatrixProperty.TYPE.value());
+		final static Tag ADDRESSINGMODE = new Tag(Class.CONTEXT, 
+				MatrixProperty.ADDRESSINGMODE.value());
+		final static Tag TARGETCOUNT = new Tag(Class.CONTEXT, 
+				MatrixProperty.TARGETCOUNT.value());
+		final static Tag SOURCECOUNT = new Tag(Class.CONTEXT, 
+				MatrixProperty.SOURCECOUNT.value());
+		final static Tag MAXIMUMTOTALCONNECTS = new Tag(Class.CONTEXT, 
+				MatrixProperty.MAXIMUMTOTALCONNECTS.value());
+		final static Tag MAXIMUMCONNECTSPERTARGET = new Tag(Class.CONTEXT, 
+				MatrixProperty.MAXIMUMCONNECTSPERTARGET.value());
+		final static Tag PARAMETERSLOCATION = new Tag(Class.CONTEXT, 
+				MatrixProperty.PARAMETERSLOCATION.value());
+		final static Tag GAINPARAMETERNUMBER = new Tag(Class.CONTEXT, 
+				MatrixProperty.GAINPARAMETERNUMBER.value());
+		final static Tag LABELS = new Tag(Class.CONTEXT, 
+				MatrixProperty.LABELS.value());
+		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT, 
+				MatrixProperty.SCHEMAIDENTIFIER.value());
 	}
 
 	static class Node {
@@ -83,10 +96,12 @@ final class GlowTags {
 				NodeProperty.IDENTIFIER.value());
 		final static Tag DESCRIPTION = new Tag(Class.CONTEXT,
 				NodeProperty.DESCRIPTION.value());
-		final static Tag IS_ROOT = new Tag(Class.CONTEXT,
+		final static Tag ISROOT = new Tag(Class.CONTEXT,
 				NodeProperty.ISROOT.value());
-		final static Tag IS_ONLINE = new Tag(Class.CONTEXT,
+		final static Tag ISONLINE = new Tag(Class.CONTEXT,
 				NodeProperty.ISONLINE.value());
+		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT,
+				NodeProperty.SCHEMAIDENTIFIER.value());		
 	}
 
 	static class Parameter {
@@ -114,22 +129,25 @@ final class GlowTags {
 				ParameterProperty.ENUMERATION.value());
 		final static Tag FACTOR = new Tag(Class.CONTEXT,
 				ParameterProperty.FACTOR.value());
-		final static Tag IS_ONLINE = new Tag(Class.CONTEXT,
+		final static Tag ISONLINE = new Tag(Class.CONTEXT,
 				ParameterProperty.ISONLINE.value());
 		final static Tag FORMULA = new Tag(Class.CONTEXT,
 				ParameterProperty.FORMULA.value());
+		@Deprecated
 		final static Tag STEP = new Tag(Class.CONTEXT,
 				ParameterProperty.STEP.value());
 		final static Tag DEFAULT = new Tag(Class.CONTEXT,
 				ParameterProperty.DEFAULT.value());
 		final static Tag TYPE = new Tag(Class.CONTEXT,
 				ParameterProperty.TYPE.value());
-		final static Tag ENUM_MAP = new Tag(Class.CONTEXT,
+		final static Tag ENUMMAP = new Tag(Class.CONTEXT,
 				ParameterProperty.ENUMMAP.value());
-		final static Tag STREAM_IDENTIFIER = new Tag(Class.CONTEXT,
+		final static Tag STREAMIDENTIFIER = new Tag(Class.CONTEXT,
 				ParameterProperty.STREAMIDENTIFIER.value());
-		final static Tag STREAM_DESCRIPTOR = new Tag(Class.CONTEXT,
+		final static Tag STREAMDESCRIPTOR = new Tag(Class.CONTEXT,
 				ParameterProperty.STREAMDESCRIPTOR.value());
+		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT,
+				ParameterProperty.SCHEMAIDENTIFIER.value());
 	}
 
 	static class QualifiedFunction {
@@ -169,8 +187,8 @@ final class GlowTags {
 	}
 
 	static class StreamEntry {
-		final static Tag STREAM_IDENTIFIER = new Tag(Class.CONTEXT, 0);
-		final static Tag STREAM_VALUE = new Tag(Class.CONTEXT, 1);
+		final static Tag STREAMIDENTIFIER = new Tag(Class.CONTEXT, 0);
+		final static Tag STREAMVALUE = new Tag(Class.CONTEXT, 1);
 	}
 
 	static class StringIntegerPair {

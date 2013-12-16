@@ -22,7 +22,17 @@ public enum NodeProperty {
 	 * Identifies the root flag of a node. This flag is used by proxies in order
 	 * to be able to know how to translate relative object identifiers.
 	 */
-	ISROOT(2), ISONLINE(3);
+	ISROOT(2), 
+	
+	/**
+	 * Identifies the online state of a node.
+	 */
+	ISONLINE(3),
+	
+	/**
+	 * Identifies the schema identifier string of a node.
+	 */
+	SCHEMAIDENTIFIER(4);
 
 	/**
 	 * Gets the {@link NodeProperty} represented by the passed numeric value.
@@ -43,6 +53,8 @@ public enum NodeProperty {
 			return ISROOT;
 		case 3:
 			return ISONLINE;
+		case 4:
+			return SCHEMAIDENTIFIER;
 		default:
 			throw new InvalidParameterException(
 					"The specified value is invalid.");

@@ -32,9 +32,9 @@ public class GlowStreamEntry extends GlowContainer {
 	 */
 	public GlowStreamEntry(int streamIdentifier, double value) {
 		super(InsertMode.SORTED, GlowType.STREAMENTRY);
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_IDENTIFIER, new Value(
+		insert(new Leaf(GlowTags.StreamEntry.STREAMIDENTIFIER, new Value(
 				streamIdentifier)));
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_VALUE, new Value(value)));
+		insert(new Leaf(GlowTags.StreamEntry.STREAMVALUE, new Value(value)));
 	}
 
 	/**
@@ -48,9 +48,9 @@ public class GlowStreamEntry extends GlowContainer {
 	public GlowStreamEntry(int streamIdentifier, int value) {
 		super(InsertMode.SORTED, GlowType.STREAMENTRY);
 
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_IDENTIFIER, new Value(
+		insert(new Leaf(GlowTags.StreamEntry.STREAMIDENTIFIER, new Value(
 				streamIdentifier)));
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_VALUE, new Value(value)));
+		insert(new Leaf(GlowTags.StreamEntry.STREAMVALUE, new Value(value)));
 	}
 
 	/**
@@ -72,9 +72,9 @@ public class GlowStreamEntry extends GlowContainer {
 
 		Assert.AssertNotNull(octets, "octets");
 
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_IDENTIFIER, new Value(
+		insert(new Leaf(GlowTags.StreamEntry.STREAMIDENTIFIER, new Value(
 				streamIdentifier)));
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_VALUE, new Value(octets)));
+		insert(new Leaf(GlowTags.StreamEntry.STREAMVALUE, new Value(octets)));
 	}
 
 	/**
@@ -93,9 +93,9 @@ public class GlowStreamEntry extends GlowContainer {
 
 		Assert.AssertNotNull(value, "value");
 
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_IDENTIFIER, new Value(
+		insert(new Leaf(GlowTags.StreamEntry.STREAMIDENTIFIER, new Value(
 				streamIdentifier)));
-		insert(new Leaf(GlowTags.StreamEntry.STREAM_VALUE, new Value(value)));
+		insert(new Leaf(GlowTags.StreamEntry.STREAMVALUE, new Value(value)));
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class GlowStreamEntry extends GlowContainer {
 	 *         exist.
 	 */
 	public Integer streamIdentifier() {
-		final Leaf leaf = findType(GlowTags.StreamEntry.STREAM_IDENTIFIER);
+		final Leaf leaf = findType(GlowTags.StreamEntry.STREAMIDENTIFIER);
 
 		if (leaf != null) {
 			return leaf.value().toInt();
@@ -121,7 +121,7 @@ public class GlowStreamEntry extends GlowContainer {
 	 *         exist.
 	 */
 	public Value value() {
-		final Leaf leaf = findType(GlowTags.StreamEntry.STREAM_VALUE);
+		final Leaf leaf = findType(GlowTags.StreamEntry.STREAMVALUE);
 
 		if (leaf != null) {
 			return leaf.value();

@@ -186,6 +186,23 @@ public class GlowMatrixBase extends GlowContentElement {
 	}
 
 	/**
+	 * Gets the schema identifier of this matrix.
+	 * @return The schema identifier or <i>null</i>, if the property is not set.
+	 * @throws UnsupportedOperationException
+	 * 			   Thrown if the value is of a different type.
+	 */
+	public String schemaIdentifier() throws UnsupportedOperationException {
+		final Value value = this
+				.getContentValue(GlowTags.MatrixContents.SCHEMAIDENTIFIER);
+		
+		if (value != null) {
+			return value.toUTF8String();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Gets the number that identifies the gain parameter of a signal.
 	 * 
 	 * @return The number identifying the gain parameter or <i>null</i>, if the
@@ -377,6 +394,18 @@ public class GlowMatrixBase extends GlowContentElement {
 		Assert.AssertNotNull(identifier, "identifier");
 
 		setContent(GlowTags.MatrixContents.IDENTIFIER, identifier);
+	}
+	
+	/**
+	 * Sets the schema identifier of this matrix. This value must not be <i>null</i>.
+	 * @param identifier The identifier string to set.
+	 * @throws NullPointerException
+	 * 			   Thrown if {@link identifier} is <i>null</i>.
+	 */
+	public void setSchemaIdentifier(String identifier) throws NullPointerException {
+		Assert.AssertNotNull(identifier, "identifier");
+		
+		setContent(GlowTags.MatrixContents.SCHEMAIDENTIFIER, identifier);
 	}
 
 	/**

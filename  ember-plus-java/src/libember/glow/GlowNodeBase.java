@@ -2,6 +2,7 @@ package libember.glow;
 
 import libember.ber.Class;
 import libember.ber.Tag;
+import libember.ber.Value;
 import libember.dom.Node;
 import libember.util.Assert;
 
@@ -107,6 +108,23 @@ public class GlowNodeBase extends GlowContentElement {
 	}
 
 	/**
+	 * Gets the schema identifier of this node.
+	 * @return The schema identifier or <i>null</i>, if the property is not set.
+	 * @throws UnsupportedOperationException
+	 * 			   Thrown if the value is of a different type.
+	 */
+	public String schemaIdentifier() throws UnsupportedOperationException {
+		final Value value = this
+				.getContentValue(GlowTags.NodeContents.SCHEMAIDENTIFIER);
+		
+		if (value != null) {
+			return value.toUTF8String();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Gets a value indicating whether the node is online or not.
 	 * 
 	 * @return <i>true</i>, if the node is online or <i>false</i> if the node is
@@ -114,7 +132,7 @@ public class GlowNodeBase extends GlowContentElement {
 	 *         <i>null</i>.
 	 */
 	public Boolean isOnline() {
-		final libember.ber.Value value = getContentValue(GlowTags.NodeContents.IS_ONLINE);
+		final libember.ber.Value value = getContentValue(GlowTags.NodeContents.ISONLINE);
 
 		if (value != null)
 			return value.toBoolean();
@@ -130,7 +148,7 @@ public class GlowNodeBase extends GlowContentElement {
 	 *         <i>null</i>.
 	 */
 	public Boolean isRoot() {
-		final libember.ber.Value value = getContentValue(GlowTags.NodeContents.IS_ROOT);
+		final libember.ber.Value value = getContentValue(GlowTags.NodeContents.ISROOT);
 
 		if (value != null)
 			return value.toBoolean();
@@ -144,6 +162,8 @@ public class GlowNodeBase extends GlowContentElement {
 	 * 
 	 * @param description
 	 *            The description string to set.
+	 * @throws NullPointerException
+	 *             Thrown if {@link description} <i>null</i>.
 	 */
 	public void setDescription(String description) throws NullPointerException {
 		Assert.AssertNotNull(description, "description");
@@ -158,12 +178,24 @@ public class GlowNodeBase extends GlowContentElement {
 	 * @param identifier
 	 *            The identifier string to set.
 	 * @throws NullPointerException
-	 *             Thrown if {@link value} <i>null</i>.
+	 *             Thrown if {@link identifier} <i>null</i>.
 	 */
 	public void setIdentidier(String identifier) throws NullPointerException {
 		Assert.AssertNotNull(identifier, "identifier");
 
 		setContent(GlowTags.NodeContents.IDENTIFIER, identifier);
+	}
+	
+	/**
+	 * Sets the schema identifier of this node. This value must not be <i>null</i>.
+	 * @param identifier The identifier string to set.
+	 * @throws NullPointerException
+	 * 			   Thrown if {@link identifier} is <i>null</i>.
+	 */
+	public void setSchemaIdentifier(String identifier) throws NullPointerException {
+		Assert.AssertNotNull(identifier, "identifier");
+		
+		setContent(GlowTags.NodeContents.SCHEMAIDENTIFIER, identifier);
 	}
 
 	/**
@@ -174,7 +206,7 @@ public class GlowNodeBase extends GlowContentElement {
 	 *            The value indicating whether this root is online or not.
 	 */
 	public void setIsOnline(boolean value) {
-		setContent(GlowTags.NodeContents.IS_ONLINE, value);
+		setContent(GlowTags.NodeContents.ISONLINE, value);
 	}
 
 	/**
@@ -184,6 +216,6 @@ public class GlowNodeBase extends GlowContentElement {
 	 *            The value indicating whether this node is a root node.
 	 */
 	public void setIsRoot(boolean value) {
-		setContent(GlowTags.NodeContents.IS_ROOT, value);
+		setContent(GlowTags.NodeContents.ISROOT, value);
 	}
 }
