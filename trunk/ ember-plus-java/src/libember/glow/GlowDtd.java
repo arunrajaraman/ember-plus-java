@@ -1,4 +1,4 @@
-package libember.s101;
+package libember.glow;
 
 /**
  * This class contains the Dtd version this library supports.
@@ -12,7 +12,7 @@ public final class GlowDtd {
 	/**
 	 * Contains the minor version number.
 	 */
-	public static final byte MINOR = 5;
+	public static final byte MINOR = 30;
 
 	/**
 	 * Gets the dtd version, where the higher byte contains the major version,

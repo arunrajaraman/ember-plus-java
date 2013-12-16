@@ -156,7 +156,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *         parameter or <i>null</i>, if the property does not exist.
 	 */
 	public Collection<Pair<String, Integer>> enumMap() {
-		final GlowStringIntegerCollection collection = (GlowStringIntegerCollection) getContent(GlowTags.ParameterContents.ENUM_MAP);
+		final GlowStringIntegerCollection collection = (GlowStringIntegerCollection) getContent(GlowTags.ParameterContents.ENUMMAP);
 
 		if (collection != null) {
 			final Vector<Pair<String, Integer>> enumMap = new Vector<Pair<String, Integer>>();
@@ -255,6 +255,23 @@ public class GlowParameterBase extends GlowContentElement {
 	}
 
 	/**
+	 * Gets the schema identifier of this parameter.
+	 * @return The schema identifier or <i>null</i>, if the property is not set.
+	 * @throws UnsupportedOperationException
+	 * 			   Thrown if the value is of a different type.
+	 */
+	public String schemaIdentifier() throws UnsupportedOperationException {
+		final Value value = this
+				.getContentValue(GlowTags.ParameterContents.SCHEMAIDENTIFIER);
+		
+		if (value != null) {
+			return value.toUTF8String();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Gets the online state of this parameter.
 	 * 
 	 * @return The online state of this parameter or <i>null</i>, if the
@@ -263,7 +280,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *             Thrown if the value is of a different type.
 	 */
 	public Boolean isOnline() {
-		final Value value = getContentValue(GlowTags.ParameterContents.IS_ONLINE);
+		final Value value = getContentValue(GlowTags.ParameterContents.ISONLINE);
 
 		if (value != null)
 			return value.toBoolean();
@@ -411,7 +428,7 @@ public class GlowParameterBase extends GlowContentElement {
 		Assert.AssertNotNull(map, "map");
 
 		final GlowStringIntegerCollection collection = new GlowStringIntegerCollection(
-				GlowTags.ParameterContents.ENUM_MAP);
+				GlowTags.ParameterContents.ENUMMAP);
 
 		for (Iterator<Pair<String, Integer>> it = map.iterator(); it.hasNext(); /* Nothing */) {
 			final libember.util.Pair<String, Integer> pair = it.next();
@@ -482,6 +499,18 @@ public class GlowParameterBase extends GlowContentElement {
 
 		setContent(GlowTags.ParameterContents.IDENTIFIER, identifier);
 	}
+	
+	/**
+	 * Sets the schema identifier of this parameter. This value must not be <i>null</i>.
+	 * @param identifier The identifier string to set.
+	 * @throws NullPointerException
+	 * 			   Thrown if {@link identifier} is <i>null</i>.
+	 */
+	public void setSchemaIdentifier(String identifier) throws NullPointerException {
+		Assert.AssertNotNull(identifier, "identifier");
+		
+		setContent(GlowTags.ParameterContents.SCHEMAIDENTIFIER, identifier);
+	}
 
 	/**
 	 * Specifies the online state of this parameter.
@@ -490,7 +519,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *            The new online state.
 	 */
 	public void setIsOnline(boolean isOnline) {
-		setContent(GlowTags.ParameterContents.IS_ONLINE, isOnline);
+		setContent(GlowTags.ParameterContents.ISONLINE, isOnline);
 	}
 
 	/**
@@ -558,7 +587,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 */
 	public void setStreamDescriptor(StreamFormat format, int offset) {
 		final GlowStreamDescriptor descriptor = new GlowStreamDescriptor(
-				GlowTags.ParameterContents.STREAM_DESCRIPTOR, format, offset);
+				GlowTags.ParameterContents.STREAMDESCRIPTOR, format, offset);
 		setContent(descriptor);
 	}
 
@@ -573,7 +602,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *            The stream identifier.
 	 */
 	public void setStreamIdentifier(int value) {
-		setContent(GlowTags.ParameterContents.STREAM_IDENTIFIER, value);
+		setContent(GlowTags.ParameterContents.STREAMIDENTIFIER, value);
 	}
 
 	/**
@@ -662,7 +691,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *         does not exist.
 	 */
 	public GlowStreamDescriptor streamDescriptor() {
-		return (GlowStreamDescriptor) getContent(GlowTags.ParameterContents.STREAM_DESCRIPTOR);
+		return (GlowStreamDescriptor) getContent(GlowTags.ParameterContents.STREAMDESCRIPTOR);
 	}
 
 	/**
@@ -674,7 +703,7 @@ public class GlowParameterBase extends GlowContentElement {
 	 *             Thrown if the value is of a different type.
 	 */
 	public Integer streamIdentifier() throws UnsupportedOperationException {
-		final Value value = getContentValue(GlowTags.ParameterContents.STREAM_IDENTIFIER);
+		final Value value = getContentValue(GlowTags.ParameterContents.STREAMIDENTIFIER);
 
 		if (value != null)
 			return value.toInt();
