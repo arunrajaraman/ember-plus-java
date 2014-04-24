@@ -12,7 +12,7 @@ public final class GlowDtd {
 	/**
 	 * Contains the minor version number.
 	 */
-	public static final byte MINOR = 30;
+	public static final byte MINOR = 31;
 
 	/**
 	 * Gets the dtd version, where the higher byte contains the major version,

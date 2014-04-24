@@ -96,7 +96,7 @@ public enum ParameterProperty {
 	/**
 	 * Identifies the schema identifier.
 	 */
-	SCHEMAIDENTIFIER(17);
+	SCHEMAIDENTIFIERS(17);
 
 	/**
 	 * Gets the {@link ParameterProperty} represented by the passed numeric
@@ -147,7 +147,7 @@ public enum ParameterProperty {
 		case 16:
 			return STREAMDESCRIPTOR;
 		case 17:
-			return SCHEMAIDENTIFIER;
+			return SCHEMAIDENTIFIERS;
 		default:
 			throw new NoSuchElementException("The value is invalid.");
 		}
