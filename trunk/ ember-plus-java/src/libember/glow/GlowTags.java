@@ -81,8 +81,8 @@ final class GlowTags {
 				MatrixProperty.GAINPARAMETERNUMBER.value());
 		final static Tag LABELS = new Tag(Class.CONTEXT, 
 				MatrixProperty.LABELS.value());
-		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT, 
-				MatrixProperty.SCHEMAIDENTIFIER.value());
+		final static Tag SCHEMAIDENTIFIERS = new Tag(Class.CONTEXT, 
+				MatrixProperty.SCHEMAIDENTIFIERS.value());
 	}
 
 	static class Node {
@@ -100,8 +100,8 @@ final class GlowTags {
 				NodeProperty.ISROOT.value());
 		final static Tag ISONLINE = new Tag(Class.CONTEXT,
 				NodeProperty.ISONLINE.value());
-		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT,
-				NodeProperty.SCHEMAIDENTIFIER.value());		
+		final static Tag SCHEMAIDENTIFIERS = new Tag(Class.CONTEXT,
+				NodeProperty.SCHEMAIDENTIFIERS.value());		
 	}
 
 	static class Parameter {
@@ -146,8 +146,8 @@ final class GlowTags {
 				ParameterProperty.STREAMIDENTIFIER.value());
 		final static Tag STREAMDESCRIPTOR = new Tag(Class.CONTEXT,
 				ParameterProperty.STREAMDESCRIPTOR.value());
-		final static Tag SCHEMAIDENTIFIER = new Tag(Class.CONTEXT,
-				ParameterProperty.SCHEMAIDENTIFIER.value());
+		final static Tag SCHEMAIDENTIFIERS = new Tag(Class.CONTEXT,
+				ParameterProperty.SCHEMAIDENTIFIERS.value());
 	}
 
 	static class QualifiedFunction {

@@ -69,7 +69,7 @@ public enum MatrixProperty {
 	/**
 	 * Identifies the schema identifier string of a matrix.
 	 */
-	SCHEMAIDENTIFIER(11);
+	SCHEMAIDENTIFIERS(11);
 
 	/**
 	 * Gets the {@link MatrixProperty} representation of the specified numeric
@@ -108,7 +108,7 @@ public enum MatrixProperty {
 		case 10:
 			return LABELS;
 		case 11:
-			return SCHEMAIDENTIFIER;
+			return SCHEMAIDENTIFIERS;
 		default:
 			throw new NoSuchElementException("The value is invalid.");
 		}

@@ -32,7 +32,7 @@ public enum NodeProperty {
 	/**
 	 * Identifies the schema identifier string of a node.
 	 */
-	SCHEMAIDENTIFIER(4);
+	SCHEMAIDENTIFIERS(4);
 
 	/**
 	 * Gets the {@link NodeProperty} represented by the passed numeric value.
@@ -54,7 +54,7 @@ public enum NodeProperty {
 		case 3:
 			return ISONLINE;
 		case 4:
-			return SCHEMAIDENTIFIER;
+			return SCHEMAIDENTIFIERS;
 		default:
 			throw new InvalidParameterException(
 					"The specified value is invalid.");

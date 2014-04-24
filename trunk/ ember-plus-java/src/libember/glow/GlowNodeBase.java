@@ -108,14 +108,15 @@ public class GlowNodeBase extends GlowContentElement {
 	}
 
 	/**
-	 * Gets the schema identifier of this node.
+	 * Gets the string containing the schema identifiers of this node. The identifiers
+	 * are separated with the linefeed character (0x0A, \n).
 	 * @return The schema identifier or <i>null</i>, if the property is not set.
 	 * @throws UnsupportedOperationException
 	 * 			   Thrown if the value is of a different type.
 	 */
-	public String schemaIdentifier() throws UnsupportedOperationException {
+	public String schemaIdentifiers() throws UnsupportedOperationException {
 		final Value value = this
-				.getContentValue(GlowTags.NodeContents.SCHEMAIDENTIFIER);
+				.getContentValue(GlowTags.NodeContents.SCHEMAIDENTIFIERS);
 		
 		if (value != null) {
 			return value.toUTF8String();
@@ -187,15 +188,15 @@ public class GlowNodeBase extends GlowContentElement {
 	}
 	
 	/**
-	 * Sets the schema identifier of this node. This value must not be <i>null</i>.
-	 * @param identifier The identifier string to set.
+	 * Sets the string containing the schema identifiers of this node. This value must not be <i>null</i>.
+	 * @param identifiers The identifier string to set.
 	 * @throws NullPointerException
-	 * 			   Thrown if {@link identifier} is <i>null</i>.
+	 * 			   Thrown if {@link identifiers} is <i>null</i>.
 	 */
-	public void setSchemaIdentifier(String identifier) throws NullPointerException {
-		Assert.AssertNotNull(identifier, "identifier");
+	public void setSchemaIdentifiers(String identifiers) throws NullPointerException {
+		Assert.AssertNotNull(identifiers, "identifiers");
 		
-		setContent(GlowTags.NodeContents.SCHEMAIDENTIFIER, identifier);
+		setContent(GlowTags.NodeContents.SCHEMAIDENTIFIERS, identifiers);
 	}
 
 	/**
