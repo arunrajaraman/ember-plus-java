@@ -18,7 +18,6 @@ import libember.util.Assert;
  * and append it to an instance of this class as child node.
  */
 public class GlowFunctionBase extends GlowContentElement {
-	private final Tag childrenTag;
 
 	/**
 	 * Initializes a new instance of the {@link GlowFunctionBase} class.
@@ -38,11 +37,9 @@ public class GlowFunctionBase extends GlowContentElement {
 	 */
 	protected GlowFunctionBase(GlowType type, Tag tag, Tag contentsTag,
 			Tag childrenTag) throws NullPointerException {
-		super(InsertMode.DEFAULT, type, tag, contentsTag);
+		super(InsertMode.DEFAULT, type, tag, contentsTag, childrenTag);
 
 		Assert.AssertNotNull(childrenTag, "childrenTag");
-
-		this.childrenTag = childrenTag;
 	}
 
 	/**
@@ -78,43 +75,6 @@ public class GlowFunctionBase extends GlowContentElement {
 			this.setContent(arguments);
 
 			return arguments;
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Gets a {@link GlowElementCollection} which contains the children of this
-	 * function. Usually, a function has no children exception the invocation
-	 * command.
-	 * 
-	 * @return The container containing the children of this function.
-	 */
-	public GlowElementCollection children() {
-		return children(false);
-	}
-
-	/**
-	 * Gets a {@link GlowElementCollection} which contains the children of this
-	 * function. Usually, a function has no children except the invocation
-	 * command.
-	 * 
-	 * @param create
-	 *            If <i>true</i>, the children container will be created if it
-	 *            does not yet exist.
-	 * @return The container containing the children of this function.
-	 */
-	public GlowElementCollection children(boolean create) {
-		final Node container = this.find(this.childrenTag);
-
-		if (container != null) {
-			return (GlowElementCollection) container;
-		} else if (create) {
-			final GlowElementCollection children = new GlowElementCollection(
-					this.childrenTag);
-			this.insert(children);
-
-			return children;
 		} else {
 			return null;
 		}

@@ -150,7 +150,6 @@ public abstract class Container extends Node implements Iterable<Node> {
 	/**
 	 * Gets an {@link Iterator} which provides access to the child nodes.
 	 */
-	@Override
 	public Iterator<Node> iterator() {
 		return iteratorImpl();
 	}

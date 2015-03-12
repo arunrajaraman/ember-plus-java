@@ -1,7 +1,5 @@
 package libember.glow;
 
-import javax.naming.OperationNotSupportedException;
-
 import libember.ber.Tag;
 import libember.ber.Value;
 import libember.dom.Leaf;
@@ -106,10 +104,10 @@ public final class GlowMatrix extends GlowMatrixBase {
 	 * 
 	 * @return The number identifying this matrix or <i>null</i>, if the value
 	 *         is not specified.
-	 * @throws OperationNotSupportedException
+	 * @throws UnsupportedOperationException
 	 *             Thrown if the value is of a different type.
 	 */
-	public Integer number() throws OperationNotSupportedException {
+	public Integer number() throws UnsupportedOperationException {
 		final Leaf leaf = this.findType(GlowTags.Matrix.NUMBER);
 
 		if (leaf != null) {

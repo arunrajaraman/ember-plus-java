@@ -21,7 +21,7 @@ public final class GlowQualifiedMatrix extends GlowMatrixBase {
 	 * @throws NullPointerException
 	 *             Thrown if {@link path} or {@link tag} is <i>null</i>.
 	 */
-	GlowQualifiedMatrix(GlowRootElementCollection parent, Oid path) {
+	public GlowQualifiedMatrix(GlowRootElementCollection parent, Oid path) {
 		super(GlowType.QUALIFIEDMATRIX, GlowTags.ELEMENT_DEFAULT,
 				GlowTags.QualifiedMatrix.CONTENTS,
 				GlowTags.QualifiedMatrix.CHILDREN,
@@ -42,13 +42,11 @@ public final class GlowQualifiedMatrix extends GlowMatrixBase {
 	 * @param path
 	 *            An {@link Oid} specifying the location of this matrix within
 	 *            the tree.
-	 * @param tag
-	 *            The application tag of this instance.
 	 * @throws NullPointerException
 	 *             Thrown if {@link path} or {@link tag} is <i>null</i>.
 	 */
-	GlowQualifiedMatrix(Oid path, Tag tag) throws NullPointerException {
-		super(GlowType.QUALIFIEDMATRIX, tag, GlowTags.QualifiedMatrix.CONTENTS,
+	public GlowQualifiedMatrix(Oid path) throws NullPointerException {
+		super(GlowType.QUALIFIEDMATRIX, GlowTags.ELEMENT_DEFAULT, GlowTags.QualifiedMatrix.CONTENTS,
 				GlowTags.QualifiedMatrix.CHILDREN,
 				GlowTags.QualifiedMatrix.TARGETS,
 				GlowTags.QualifiedMatrix.SOURCES,

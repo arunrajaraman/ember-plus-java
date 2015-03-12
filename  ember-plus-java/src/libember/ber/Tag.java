@@ -81,7 +81,6 @@ public final class Tag implements Comparable<Tag> {
 		return Class.valueOf(preamble);
 	}
 
-	@Override
 	public int compareTo(Tag o) {
 		final int result = preamble - o.preamble;
 		return result != 0 ? result : (number & 0xFFFFFFFF)

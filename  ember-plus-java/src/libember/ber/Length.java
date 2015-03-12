@@ -28,7 +28,6 @@ public final class Length implements Comparable<Length> {
 		this.value = value;
 	}
 
-	@Override
 	public int compareTo(Length o) {
 		Assert.AssertNotNull(o, "o");
 		return this.value - o.value;

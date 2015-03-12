@@ -1,7 +1,7 @@
 package libember.glow;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 
 import libember.ber.Tag;
 import libember.ber.Value;
@@ -17,24 +17,27 @@ import libember.util.Assert;
 public final class GlowInvocationResult extends GlowContainer {
 	/**
 	 * Initializes a new instance of the {@link GlowInvocationResult} class.
-	 */
-	public GlowInvocationResult() {
-		super(InsertMode.DEFAULT, GlowType.INVOCATIONRESULT, GlowTags.ROOT);
-	}
-
-	/**
-	 * Initializes a new instance of the {@link GlowInvocationResult} class.
 	 * 
 	 * @param tag
 	 *            The application tag of this instance.
 	 * @throws NullPointerException
 	 *             Thrown if {@link tag} is <i>null</i>.
 	 */
-	public GlowInvocationResult(Tag tag) throws NullPointerException {
+	GlowInvocationResult(Tag tag) throws NullPointerException {
 		super(InsertMode.DEFAULT, GlowType.INVOCATIONRESULT, tag);
 	}
 
-	/**
+  /**
+   * Creates a new instance of the {@link GlowInvocationResult} class which is
+   * marked as root object.
+   * 
+   * @return A new instance of the {@link GlowInvocationResult} class.
+   */
+  public static GlowInvocationResult create() {
+    return new GlowInvocationResult(GlowTags.ROOT);
+  }
+
+  /**
 	 * Gets the invocation identifier that is associated with the invocation.
 	 * 
 	 * @return The numeric invocation identifier or <i>null</i>, if the property
@@ -151,7 +154,7 @@ public final class GlowInvocationResult extends GlowContainer {
 	 */
 	public Iterable<Value> typedResult() {
 		final Sequence result = this.result(false);
-		final Vector<Value> typedResult = new Vector<>();
+		final ArrayList<Value> typedResult = new ArrayList<Value>();
 
 		if (result != null) {
 			final Iterator<Node> it = result.iterator();

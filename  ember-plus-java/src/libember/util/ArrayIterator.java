@@ -13,6 +13,7 @@ import java.util.Iterator;
 final class ArrayIterator<T> implements Iterator<T> {
 	private final T[] data;
 	private int cursor;
+	private int end;
 
 	/**
 	 * Initializes a new instance of the {@link ArrayIterator} class.
@@ -27,10 +28,35 @@ final class ArrayIterator<T> implements Iterator<T> {
 	 *             Thrown if {@link data} is <code>null</code>.
 	 */
 	ArrayIterator(T[] data, boolean clone) throws NullPointerException {
-		Assert.AssertNotNull(data, "data");
-
-		this.data = clone ? data.clone() : data;
+	  this(data, clone, 0, data.length);
 	}
+
+  /**
+   * Initializes a new instance of the {@link ArrayIterator} class.
+   * 
+   * @param data
+   *            The data the iterator shall traverse.
+   * @param clone
+   *            If set to <code>true</code>, the iterator creates a copy of
+   *            the provided array. Otherwise, the iterator will reference the
+   *            array passed.
+   * @param offset
+   *            Index of the first item to yield.
+   * @param count
+   *            Number of items to yield.
+   * @throws NullPointerException
+   *             Thrown if {@link data} is <code>null</code>.
+   */
+  ArrayIterator(T[] data, boolean clone, int offset, int count) throws NullPointerException {
+    Assert.AssertNotNull(data, "data");
+    
+    if (offset < 0 || offset + count > data.length)
+      throw new IndexOutOfBoundsException();
+
+    this.data = clone ? data.clone() : data;
+    this.end = offset + count;
+    this.cursor = offset;
+  }
 
 	/**
 	 * Gets a value indicating whether another item is available.
@@ -38,18 +64,16 @@ final class ArrayIterator<T> implements Iterator<T> {
 	 * @return <i>true</i>, if another item is available by calling {@link next}
 	 *         . Otherwise, this method returns <i>false</i>.
 	 */
-	@Override
 	public boolean hasNext() {
-		return cursor < data.length;
+		return this.cursor < this.end;
 	}
 
 	/**
 	 * Gets the current item the iterator references and moves to the next
 	 * element in the collection.
 	 */
-	@Override
 	public T next() {
-		return data[cursor++];
+		return this.data[this.cursor++];
 	}
 
 	/**
@@ -59,7 +83,6 @@ final class ArrayIterator<T> implements Iterator<T> {
 	 * @throws UnsupportedOperationException
 	 *             Thrown when this method is being called.
 	 */
-	@Override
 	public void remove() {
 		throw new UnsupportedOperationException();
 	}

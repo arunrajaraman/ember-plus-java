@@ -1,9 +1,9 @@
 package libember.ber;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Vector;
 
 import libember.util.Assert;
 import libember.util.InputStream;
@@ -417,7 +417,7 @@ public final class Encoding {
 			Octets type) throws NoSuchElementException, NullPointerException {
 		Assert.AssertNotNull(input, "input");
 
-		final Vector<Integer> data = new Vector<Integer>(encodedLength);
+		final ArrayList<Integer> data = new ArrayList<Integer>(encodedLength);
 
 		for (int i = 0; i < encodedLength; ++i) {
 			data.add(input.peek() & 0xFF);
@@ -450,7 +450,7 @@ public final class Encoding {
 			throws NoSuchElementException, NullPointerException {
 		Assert.AssertNotNull(input, "input");
 
-		final Vector<Integer> elements = new Vector<Integer>();
+		final ArrayList<Integer> elements = new ArrayList<Integer>();
 
 		while (encodedLength > 0) {
 			final int number = (int) MultiByte.decode(input);
@@ -785,7 +785,7 @@ public final class Encoding {
 		Assert.AssertNotNull(value, "value");
 
 		for (Iterator<Integer> it = value.iterator(); it.hasNext(); /* Nothing */) {
-			output.append(it.next().byteValue());
+			output.append(it.next());
 		}
 	}
 
@@ -850,7 +850,7 @@ public final class Encoding {
 			final byte[] encodedBytes = value.getBytes("UTF-8");
 
 			for (int i = 0; i < encodedBytes.length; i++) {
-				output.append(encodedBytes[i]);
+				output.append((encodedBytes[i] + 0x100) & 0xff); // convert to unsigned byte range (0..255)
 			}
 		} catch (UnsupportedEncodingException _) {
 		}

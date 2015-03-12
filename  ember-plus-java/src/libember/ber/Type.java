@@ -71,7 +71,6 @@ public final class Type implements Comparable<Type> {
 		this.value = type.value();
 	}
 
-	@Override
 	public int compareTo(Type o) {
 		return (int) (value - o.value);
 	}
