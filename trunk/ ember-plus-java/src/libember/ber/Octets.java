@@ -1,7 +1,7 @@
 package libember.ber;
 
 import java.util.Collection;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import libember.util.ImmutableCollection;
 import libember.util.StringUtil;
@@ -19,7 +19,7 @@ public final class Octets extends ImmutableCollection<Integer> {
 	 * Initializes an empty instance of the {@link Octets} class.
 	 */
 	public Octets() {
-		super(new Vector<Integer>());
+		super(new ArrayList<Integer>());
 	}
 
 	/**

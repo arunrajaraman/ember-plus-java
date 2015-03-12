@@ -1,7 +1,7 @@
 package libember.glow;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
 
 import libember.ber.Class;
 import libember.ber.Oid;
@@ -18,7 +18,6 @@ import libember.util.Assert;
  * signals and even crosspoints.
  */
 public class GlowMatrixBase extends GlowContentElement {
-	private final Tag childrenTag;
 	private final Tag targetsTag;
 	private final Tag sourcesTag;
 	private final Tag connectionsTag;
@@ -48,14 +47,12 @@ public class GlowMatrixBase extends GlowContentElement {
 	 */
 	protected GlowMatrixBase(GlowType type, Tag tag, Tag contentsTag,
 			Tag childrenTag, Tag targetsTag, Tag sourcesTag, Tag connectionsTag) {
-		super(InsertMode.DEFAULT, type, tag, contentsTag);
+		super(InsertMode.DEFAULT, type, tag, contentsTag, childrenTag);
 
-		Assert.AssertNotNull(childrenTag, "childrenTag");
 		Assert.AssertNotNull(targetsTag, "targetsTag");
 		Assert.AssertNotNull(sourcesTag, "sourcesTag");
 		Assert.AssertNotNull(connectionsTag, "connectionsTag");
 
-		this.childrenTag = childrenTag;
 		this.targetsTag = targetsTag;
 		this.sourcesTag = sourcesTag;
 		this.connectionsTag = connectionsTag;
@@ -75,43 +72,6 @@ public class GlowMatrixBase extends GlowContentElement {
 
 		if (value != null) {
 			return MatrixAddressingMode.valueOf(value.toInt());
-		} else {
-			return null;
-		}
-	}
-
-	/**
-	 * Gets a {@link GlowElementCollection} which contains the children of this
-	 * matrix.
-	 * 
-	 * @return A {@link GlowElementCollection} containing the children of this
-	 *         matrix or <i>null</i>, if the container does not exist.
-	 */
-	public GlowElementCollection children() {
-		return children(false);
-	}
-
-	/**
-	 * Gets a {@link GlowElementCollection} which contains the children of this
-	 * matrix.
-	 * 
-	 * @param create
-	 *            Specifies whether the container shall be created if it doesn't
-	 *            already exist.
-	 * @return A {@link GlowElementCollection} containing the children of this
-	 *         matrix or <i>null</i>, if the container does not exist and
-	 *         {@link create} is <i>false</i>.
-	 */
-	public GlowElementCollection children(boolean create) {
-		final Node container = this.find(this.childrenTag);
-
-		if (container != null) {
-			return (GlowElementCollection) container;
-		} else if (create) {
-			final GlowElementCollection children = new GlowElementCollection(
-					this.childrenTag);
-			this.insert(children);
-			return children;
 		} else {
 			return null;
 		}
@@ -723,7 +683,7 @@ public class GlowMatrixBase extends GlowContentElement {
 	 *         {@link GlowConnection}.
 	 */
 	public Iterable<GlowConnection> typedConnections() {
-		final Vector<GlowConnection> result = new Vector<GlowConnection>();
+		final ArrayList<GlowConnection> result = new ArrayList<GlowConnection>();
 		final Sequence connections = this.connections();
 
 		if (connections != null) {
@@ -748,7 +708,7 @@ public class GlowMatrixBase extends GlowContentElement {
 	 * @return An {@link Iterable} providing access to the labels descriptions.
 	 */
 	public Iterable<GlowLabel> typedLabels() {
-		final Vector<GlowLabel> result = new Vector<GlowLabel>();
+		final ArrayList<GlowLabel> result = new ArrayList<GlowLabel>();
 		final Sequence labels = this.labels();
 
 		if (labels != null) {
@@ -773,7 +733,7 @@ public class GlowMatrixBase extends GlowContentElement {
 	 * @return An {@link Iterable} containing the known sources of this matrix.
 	 */
 	public Iterable<GlowSource> typedSources() {
-		final Vector<GlowSource> result = new Vector<GlowSource>();
+		final ArrayList<GlowSource> result = new ArrayList<GlowSource>();
 		final Sequence sources = this.sources();
 
 		if (sources != null) {
@@ -799,7 +759,7 @@ public class GlowMatrixBase extends GlowContentElement {
 	 * @return An {@link Iterable} containing the known targets of this matrix.
 	 */
 	public Iterable<GlowTarget> typedTargets() {
-		final Vector<GlowTarget> result = new Vector<GlowTarget>();
+		final ArrayList<GlowTarget> result = new ArrayList<GlowTarget>();
 		final Sequence targets = this.targets();
 
 		if (targets != null) {

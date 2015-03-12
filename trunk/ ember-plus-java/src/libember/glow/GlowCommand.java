@@ -72,7 +72,39 @@ public final class GlowCommand extends GlowElement {
 		}
 	}
 
-	/**
+  /**
+   * Gets the {@link GlowInvocation}.
+   * 
+   * @param create
+   *    If no {@link GlowInvocation} is present and this parameter
+   *    is {@code true}, a {@link GlowInvocation} will be created.
+   * 
+   * @return The {@link GlowInvocation} of this instance or {@code null}
+   *         if none found and {@link create} is {@code false}.
+   */
+  public GlowInvocation invocation(boolean create) {
+    GlowInvocation node = this.findType(GlowTags.Command.INVOCATION);
+
+    if (node == null && create) {
+      node = new GlowInvocation(GlowTags.Command.INVOCATION);
+
+      this.insert(node);
+    }
+
+    return node;
+  }
+
+  /**
+   * Gets the {@link GlowInvocation}.
+   * 
+   * @return The {@link GlowInvocation} of this instance or {@code null}
+   *         if none found.
+   */
+  public GlowInvocation invocation() {
+    return this.invocation(false);
+  }
+
+  /**
 	 * Sets the {@link DirFieldMask} for this command. This property is only
 	 * used by a request of type {@link CommandType.GETDIRECTORY}. If this
 	 * property is not set, the provider must handle the command as if

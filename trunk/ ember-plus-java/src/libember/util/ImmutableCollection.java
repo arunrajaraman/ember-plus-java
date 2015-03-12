@@ -14,7 +14,7 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 	private final T[] data;
 
 	/**
-	 * Initialiezs a new instance of the {@link ImmutableCollection} class.
+	 * Initializes a new instance of the {@link ImmutableCollection} class.
 	 * 
 	 * @param collection
 	 *            The collection to copy the elements from.
@@ -26,7 +26,7 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 		if (collection == null)
 			throw new NullPointerException("collection must not be null.");
 
-		data = (T[]) collection.toArray();
+		this.data = (T[]) collection.toArray();
 	}
 
 	/**
@@ -47,7 +47,7 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 	 * @throws IndexOutOfBoundsException
 	 *             Thrown if the specified index is out of bounds.
 	 */
-	public T elementAt(int index) {
+	public T get(int index) {
 		return data[index];
 	}
 
@@ -57,7 +57,7 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 	 * @return <i>true</i>, if the collection is empty. Otherwise, this method
 	 *         returns <i>false</i>.
 	 */
-	public boolean empty() {
+	public boolean isEmpty() {
 		return data.length == 0;
 	}
 
@@ -68,7 +68,6 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 	 * @return A new iterator which can be used to walk through all elements of
 	 *         the array.
 	 */
-	@Override
 	public Iterator<T> iterator() {
 		return new ArrayIterator<T>(data, false);
 	}
@@ -80,5 +79,14 @@ public abstract class ImmutableCollection<T> implements Iterable<T> {
 	 */
 	public int size() {
 		return data.length;
+	}
+	
+	public Iterable<T> slice(final int offset, final int count) {
+	  return new Iterable<T>() {
+      @Override
+      public Iterator<T> iterator() {
+        return new ArrayIterator<T>(data, false, offset, count);
+      }
+	  };
 	}
 }

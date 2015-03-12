@@ -115,7 +115,6 @@ public final class StreamEncoder implements Iterable<Integer> {
 		return finished;
 	}
 
-	@Override
 	public Iterator<Integer> iterator() {
 		return buffer.iterator();
 	}

@@ -58,7 +58,6 @@ public final class MemoryStream implements InputStream, OutputStream {
 		}
 	}
 
-	@Override
 	public void append(int value) {
 		vector.add(Integer.valueOf(value & 0xFF));
 	}
@@ -70,12 +69,10 @@ public final class MemoryStream implements InputStream, OutputStream {
 		vector.clear();
 	}
 
-	@Override
 	public void consume() {
 		vector.remove(0);
 	}
 
-	@Override
 	public int peek() {
 		return vector.firstElement().intValue() & 0xFF;
 	}
@@ -89,7 +86,6 @@ public final class MemoryStream implements InputStream, OutputStream {
 		return vector.size();
 	}
 
-	@Override
 	public byte[] toArray() {
 		final byte[] array = new byte[size()];
 

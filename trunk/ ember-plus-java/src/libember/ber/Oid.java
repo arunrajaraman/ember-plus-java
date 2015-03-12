@@ -1,7 +1,7 @@
 package libember.ber;
 
 import java.util.Collection;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import libember.util.ImmutableCollection;
 import libember.util.StringUtil;
@@ -21,7 +21,7 @@ public final class Oid extends ImmutableCollection<Integer> implements
 	 * Initializes a new instance of the {@link Oid} class.
 	 */
 	private Oid() {
-		super(new Vector<Integer>());
+		super(new ArrayList<Integer>());
 	}
 
 	/**
@@ -36,13 +36,12 @@ public final class Oid extends ImmutableCollection<Integer> implements
 		super(collection);
 	}
 
-	@Override
 	public int compareTo(Oid o) {
 		final int length = size();
 
 		if (length == o.size()) {
 			for (int i = 0; i < length; ++i) {
-				final int difference = elementAt(i) - o.elementAt(i);
+				final int difference = get(i) - o.get(i);
 
 				if (difference != 0) {
 					return difference;
@@ -74,6 +73,45 @@ public final class Oid extends ImmutableCollection<Integer> implements
 	public boolean equals(Oid other) {
 		return compareTo(other) == 0;
 	}
+	
+	/**
+	 * Concatenates the sub-ids from this {@link Oid} and the sub-ids
+	 * of another {@link Oid} into a new {@link Oid}.
+	 * 
+	 * @param other
+	 *           The {@link Oid} to append to this {@link Oid}. 
+	 * @return A new instance of {@link Oid}.
+	 */
+	public Oid append(Oid other) {
+	  final ArrayList<Integer> data = new ArrayList<Integer>(size() + other.size());
+
+	  for (final Integer n : this)
+	    data.add(n);
+
+	  for (final Integer n : other)
+	    data.add(n);
+
+	  return new Oid(data);
+	}
+
+  /**
+   * Appends a single sub-id to this oid into a new {@link Oid}.
+   * 
+   * @param subid
+   *           The sub-id to append. 
+   * @return A new instance of {@link Oid}.
+   */
+  public Oid append(int subid) {
+    final int size = size();
+    final ArrayList<Integer> data = new ArrayList<Integer>(size + 1);
+
+    for (final Integer n : this)
+      data.add(n);
+
+    data.set(size, subid);
+
+    return new Oid(data);
+  }
 
 	@Override
 	public String toString() {

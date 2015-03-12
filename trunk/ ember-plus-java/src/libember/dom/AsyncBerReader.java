@@ -220,7 +220,7 @@ public abstract class AsyncBerReader {
 				final Tag tag = Encoding.decode(inputStream, Encoding.TAG);
 
 				isContainer = tag.isContainer();
-				typeTag = tag;
+				typeTag = tag.toPrimitive();
 			}
 
 			reset(DecodeState.Length);

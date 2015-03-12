@@ -16,6 +16,7 @@ import libember.util.Assert;
  */
 public class GlowContentElement extends GlowElement {
 	private final Tag contentsTag;
+  private final Tag childrenTag;
 	private Set contents;
 
 	/**
@@ -33,12 +34,13 @@ public class GlowContentElement extends GlowElement {
 	 *             Thrown if any of the arguments is <i>null</i>.
 	 */
 	protected GlowContentElement(InsertMode mode, GlowType type, Tag tag,
-			Tag contentsTag) throws NullPointerException {
+			Tag contentsTag, Tag childrenTag) throws NullPointerException {
 		super(mode, type, tag);
 
 		Assert.AssertNotNull(contentsTag, "contentsTag");
 
 		this.contentsTag = contentsTag;
+		this.childrenTag = childrenTag;
 	}
 
 	/**
@@ -266,20 +268,66 @@ public class GlowContentElement extends GlowElement {
 	 *         be created.
 	 */
 	public Set contents() {
-		if (contents == null) {
-			contents = (Set) find(contentsTag);
+		return contents(true);
+	}
 
-			if (contents == null) {
-				contents = new Set(contentsTag);
-				insert(contents);
-			}
-		}
+	/**
+	 * Gets the {@link Set} storing the content properties.
+	 * 
+	 * @param create
+	 *            If true, the contents set will be created if does not yet exist.
+	 * @return The contents set or null if not present. 
+	 */
+	public Set contents(boolean create) {
+	  if (contents == null) {
+	    contents = (Set) find(contentsTag);
 
-		return contents;
+	    if (contents == null && create) {
+	      contents = new Set(contentsTag);
+	      insert(contents);
+	    }
+	  }
+
+	  return contents;
 	}
 
 	@SuppressWarnings("unchecked")
 	public <T extends libember.dom.Node> T getContentType(Tag tag) {
 		return (T) getContent(tag);
 	}
+
+  /**
+   * Gets a {@link GlowElementCollection} which contains the children of this
+   * element.
+   * 
+   * @return The container containing the children of this function.
+   */
+  public GlowElementCollection children() {
+    return children(false);
+  }
+
+  /**
+   * Gets a {@link GlowElementCollection} which contains the children of this
+   * element.
+   * 
+   * @param create
+   *            If <i>true</i>, the children container will be created if it
+   *            does not yet exist.
+   * @return The container containing the children of this element.
+   */
+  public GlowElementCollection children(boolean create) {
+    final Node container = this.find(this.childrenTag);
+
+    if (container != null) {
+      return (GlowElementCollection) container;
+    } else if (create) {
+      final GlowElementCollection children = new GlowElementCollection(
+          this.childrenTag);
+      this.insert(children);
+
+      return children;
+    } else {
+      return null;
+    }
+  }
 }

@@ -3,7 +3,6 @@ package libember.glow;
 import libember.ber.Class;
 import libember.ber.Tag;
 import libember.ber.Value;
-import libember.dom.Node;
 import libember.util.Assert;
 
 /**
@@ -11,7 +10,6 @@ import libember.util.Assert;
  * of a device or to categorize a collection of subnodes or parameters.
  */
 public class GlowNodeBase extends GlowContentElement {
-	private final Tag childrenTag;
 
 	/**
 	 * Initializes a new instance of the {@link GlowNodeBase} class.
@@ -30,34 +28,7 @@ public class GlowNodeBase extends GlowContentElement {
 	 */
 	protected GlowNodeBase(GlowType type, Tag tag, Tag contentTag,
 			Tag childrenTag) throws NullPointerException {
-		super(InsertMode.SORTED, type, tag, contentTag);
-
-		Assert.AssertNotNull(childrenTag, "childrenTag");
-
-		this.childrenTag = childrenTag;
-	}
-
-	/**
-	 * Gets a collection that contains the children of this node.
-	 * 
-	 * @param create
-	 *            If set to <i>true</i>, the container will be created if it
-	 *            doesn't already exist.
-	 * @return The collection that contains the children of this node. If the
-	 *         sequence doesn't exist and {@link create} is set to <i>false</i>,
-	 *         <i>null</i> is being returned.
-	 */
-	public GlowElementCollection children(boolean create) {
-		final Node node = find(childrenTag);
-
-		if (node == null && create) {
-			final GlowElementCollection collection = new GlowElementCollection(
-					childrenTag);
-			insert(collection);
-			return collection;
-		} else {
-			return (GlowElementCollection) node;
-		}
+		super(InsertMode.SORTED, type, tag, contentTag, childrenTag);
 	}
 
 	/**
@@ -181,7 +152,7 @@ public class GlowNodeBase extends GlowContentElement {
 	 * @throws NullPointerException
 	 *             Thrown if {@link identifier} <i>null</i>.
 	 */
-	public void setIdentidier(String identifier) throws NullPointerException {
+	public void setIdentifier(String identifier) throws NullPointerException {
 		Assert.AssertNotNull(identifier, "identifier");
 
 		setContent(GlowTags.NodeContents.IDENTIFIER, identifier);

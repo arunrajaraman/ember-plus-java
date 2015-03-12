@@ -7,7 +7,6 @@ import java.util.Vector;
 import libember.ber.Class;
 import libember.ber.Tag;
 import libember.ber.Value;
-import libember.dom.Node;
 import libember.util.Assert;
 import libember.util.Pair;
 
@@ -15,7 +14,6 @@ import libember.util.Pair;
  * This class represents a parameter within an Ember+ tree.
  */
 public class GlowParameterBase extends GlowContentElement {
-	private final Tag childrenTag;
 
 	/**
 	 * Initializes a new instance of the {@link GlowParameterBase} class.
@@ -35,11 +33,9 @@ public class GlowParameterBase extends GlowContentElement {
 	 */
 	protected GlowParameterBase(GlowType type, Tag tag, Tag contentTag,
 			Tag childrenTag) throws NullPointerException {
-		super(InsertMode.SORTED, type, tag, contentTag);
+		super(InsertMode.SORTED, type, tag, contentTag, childrenTag);
 
 		Assert.AssertNotNull(type, "type");
-
-		this.childrenTag = childrenTag;
 	}
 
 	/**
@@ -55,29 +51,6 @@ public class GlowParameterBase extends GlowContentElement {
 			return Access.valueOf(value.toInt(0));
 		} else {
 			return null;
-		}
-	}
-
-	/**
-	 * Gets a {@link GlowElementCollection} that contains the children of this
-	 * node.
-	 * 
-	 * @param create
-	 *            If set to <i>true</i>, the children sequence will be created
-	 *            if it doesn't already exist.
-	 * @return The element collection that contains the children of this node.
-	 *         If the sequence doesn't exist and the create flag is set to
-	 *         false, null is being returned.
-	 */
-	public GlowElementCollection children(boolean create) {
-		final Node node = find(childrenTag);
-		if (node == null && create) {
-			final GlowElementCollection collection = new GlowElementCollection(
-					childrenTag);
-			insert(collection);
-			return collection;
-		} else {
-			return (GlowElementCollection) node;
 		}
 	}
 

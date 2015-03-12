@@ -3,8 +3,9 @@
  */
 package libember.glow;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Vector;
+import java.util.List;
 
 import libember.ber.Tag;
 import libember.ber.Value;
@@ -139,7 +140,7 @@ public final class GlowInvocation extends GlowContainer {
 	 */
 	public Iterable<Value> typedArguments() {
 		final Sequence arguments = this.arguments(false);
-		final Vector<Value> result = new Vector<Value>();
+		final List<Value> result = new ArrayList<Value>();
 
 		if (arguments != null) {
 			final Iterator<Node> it = arguments.iterator();

@@ -34,18 +34,15 @@ final class ViewIterator<E> implements Iterator<E> {
 		this.count = count;
 	}
 
-	@Override
 	public boolean hasNext() {
 		return index < count && source.hasNext();
 	}
 
-	@Override
 	public E next() {
 		index++;
 		return source.next();
 	}
 
-	@Override
 	public void remove() {
 		source.remove();
 	}

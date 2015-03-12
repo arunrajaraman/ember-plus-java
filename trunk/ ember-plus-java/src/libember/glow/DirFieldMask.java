@@ -6,9 +6,9 @@ package libember.glow;
  */
 public enum DirFieldMask {
 	/**
-	 * Return all properties. This is the same as {@link DirFieldMask.ALL}.
+	 * Return no properties.
 	 */
-	DEFAULT(0x00),
+	NONE(0x00),
 
 	/**
 	 * Request the identifiers of all children.
@@ -35,6 +35,12 @@ public enum DirFieldMask {
 	 * Request the connections of a matrix.
 	 */
 	CONNECTIONS(0x05),
+	
+  /**
+   * Request identifier, description and value.
+   * Useful for synchronization.
+   */
+	TREE_AND_VALUE(0x07),
 
 	/**
 	 * Request all properties.
@@ -63,10 +69,11 @@ public enum DirFieldMask {
 			return VALUE;
 		case 5:
 			return CONNECTIONS;
+    case 7:
+      return TREE_AND_VALUE;
 		case -1:
+    default:
 			return ALL;
-		default:
-			return DEFAULT;
 		}
 	}
 
