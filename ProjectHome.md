@@ -1,0 +1,1 @@
+This Java library offers the same features like the .NET, C++ and C libraries (See https://code.google.com/p/ember-plus). Although we will continue working on it to keep it up to date, there is no support for this library.
